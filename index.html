@@ -1,0 +1,388 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>NovaTech</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
+<style>
+/* Layout: una sola columna de lectura, tarjetas que se apilan en el celular. Colores tomados del logo de NovaTech. */
+:root {
+  --bg: #FFFFFF;
+  --surface: #F4F2FC;
+  --fg: #0D0B1E;
+  --muted: #4A4763;
+  --line: #DAD6EC;
+  --accent: #6B21F5;
+  --accent-fg: #FFFFFF;
+  --magenta: #D400F2;
+  --card-a-bg: #6B21F5;
+  --card-a-fg: #FFFFFF;
+  --card-a-soft: #EDE4FF;
+  --card-b-bg: #0D0B1E;
+  --card-b-fg: #FFFFFF;
+  --card-b-soft: #E6E4F5;
+  --chip-bg: #0D0B1E;
+  --font-display: "Space Grotesk", "Inter", system-ui, sans-serif;
+  --font-body: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0E0C20;
+    --surface: #181533;
+    --fg: #F3F1FF;
+    --muted: #B7B2D6;
+    --line: #2D2A4D;
+    --accent: #B79CFF;
+    --accent-fg: #0E0C20;
+    --magenta: #F08CFF;
+    --card-a-bg: #5B1BD8;
+    --card-b-bg: #1E1B3E;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0E0C20;
+  --surface: #181533;
+  --fg: #F3F1FF;
+  --muted: #B7B2D6;
+  --line: #2D2A4D;
+  --accent: #B79CFF;
+  --accent-fg: #0E0C20;
+  --magenta: #F08CFF;
+  --card-a-bg: #5B1BD8;
+  --card-b-bg: #1E1B3E;
+  color-scheme: dark;
+}
+body {
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.55;
+}
+* { box-sizing: border-box; }
+.wrap {
+  max-width: 960px;
+  margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+header .wrap {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-block: 20px;
+}
+.logo-chip {
+  background: var(--chip-bg);
+  border-radius: 12px;
+  padding: 8px 14px;
+  display: inline-flex;
+}
+.logo-chip img { display: block; height: 36px; width: auto; max-width: 100%; }
+.tag {
+  border: 1.5px solid var(--fg);
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+h1, h2, h3 { font-family: var(--font-display); text-wrap: balance; margin: 0; }
+h1 { font-size: clamp(40px, 9vw, 72px); line-height: 1; letter-spacing: -0.03em; font-weight: 700; max-width: 14em; }
+h1 .dot { color: var(--magenta); }
+h2 { font-size: clamp(26px, 5vw, 34px); line-height: 1.1; letter-spacing: -0.01em; font-weight: 700; }
+h3 { font-size: 24px; line-height: 1.1; font-weight: 700; }
+p { margin: 0; text-wrap: pretty; }
+.hero { padding-block: 32px 48px; display: flex; flex-direction: column; gap: 24px; }
+.hero .lead { font-size: clamp(19px, 3.4vw, 22px); line-height: 1.4; font-weight: 500; color: var(--muted); max-width: 40rem; }
+.hero .lead strong { color: var(--fg); font-weight: 600; }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; }
+.mail {
+  font-weight: 600;
+  font-size: 18px;
+  overflow-wrap: anywhere;
+  user-select: all;
+}
+button.copy {
+  font: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-fg);
+  border: 0;
+  border-radius: 10px;
+  padding: 10px 16px;
+  min-height: 44px;
+  cursor: pointer;
+}
+.status { font-size: 14px; color: var(--muted); min-height: 1.4em; }
+a:focus-visible, button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+section { padding-block: 40px; }
+section.alt { background: var(--surface); }
+.section-head { display: flex; flex-direction: column; gap: 8px; margin-bottom: 24px; max-width: 40rem; }
+.section-head p { color: var(--muted); }
+.modules { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px; }
+.card { border-radius: 18px; padding: 24px; display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+.card .label { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+.card.a { background: var(--card-a-bg); color: var(--card-a-fg); }
+.card.a .label, .card.a p { color: var(--card-a-soft); }
+.card.b { background: var(--card-b-bg); color: var(--card-b-fg); }
+.card.b .label, .card.b p { color: var(--card-b-soft); }
+.card ul { margin: 4px 0 0; padding-left: 20px; display: flex; flex-direction: column; gap: 4px; }
+.steps { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; counter-reset: paso; }
+.steps li { border-top: 2px solid var(--fg); padding-top: 14px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.steps li::before {
+  counter-increment: paso;
+  content: counter(paso);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 1;
+  color: var(--accent);
+}
+.steps strong { font-family: var(--font-display); font-size: 22px; line-height: 1.15; }
+.steps span { color: var(--muted); }
+.roles { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 16px; }
+.role { background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.role strong { font-family: var(--font-display); font-size: 20px; }
+.role span { color: var(--muted); font-size: 16px; }
+.role .badge { font-size: 12.5px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: var(--accent); }
+.stack { display: flex; flex-wrap: wrap; gap: 10px; padding: 0; margin: 0; list-style: none; }
+.stack li { border: 1.5px solid var(--line); border-radius: 999px; padding: 8px 16px; font-weight: 500; background: var(--bg); }
+footer { border-top: 1.5px solid var(--line); }
+footer .wrap { padding-block: 28px; display: flex; flex-wrap: wrap; gap: 8px 24px; justify-content: space-between; color: var(--muted); font-size: 15px; }
+footer strong { color: var(--fg); }
+.herobg { background: radial-gradient(60% 90% at 90% 0%, color-mix(in srgb, var(--magenta) 20%, transparent), transparent 70%), radial-gradient(50% 80% at 0% 100%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%); }
+.btns { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+a.btn { font-weight: 600; font-size: 16px; text-decoration: none; background: var(--accent); color: var(--accent-fg); border-radius: 12px; padding: 13px 20px; min-height: 48px; display: inline-flex; align-items: center; gap: 8px; }
+a.btn.ghost { background: transparent; color: var(--fg); border: 1.5px solid var(--fg); }
+a.btn.big { font-size: 18px; padding: 16px 26px; }
+.eyebrow { font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); }
+.big-quote { font-family: var(--font-display); font-size: clamp(22px, 4vw, 28px); line-height: 1.25; font-weight: 500; }
+.card.a h3, .card.b h3 { font-size: 28px; }
+.card.a p, .card.b p { font-size: 18px; line-height: 1.45; }
+.role .ico { width: 40px; height: 40px; border-radius: 12px; background: linear-gradient(135deg, var(--accent), var(--magenta)); color: #fff; display: grid; place-items: center; font-family: var(--font-display); font-weight: 700; font-size: 18px; margin-bottom: 4px; }
+.timeline { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.timeline li { background: var(--bg); border: 1.5px solid var(--line); border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 6px; }
+.timeline strong { font-family: var(--font-display); font-size: 20px; }
+.timeline span { color: var(--muted); }
+section[id] { scroll-margin-top: 12px; }
+@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+</style>
+
+<header>
+  <div class="wrap">
+    <span class="logo-chip"><img src="logo.png" alt="NovaTech" width="159" height="36"></span>
+    <span class="tag">Proyecto de egreso</span>
+  </div>
+</header>
+
+<main>
+  <div class="herobg"><div class="wrap hero">
+    <h1>Soluciones IT para el sector salud<span class="dot">.</span></h1>
+    <p class="lead"><strong>NovaTech desarrolla sistemas informáticos para hospitales.</strong> Nuestro primer producto, SIGSM, reúne la documentación del paciente con códigos QR y la trazabilidad de ambulancias.</p>
+    <div>
+      <div class="btns">
+        <a class="btn" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=novatech0805@gmail.com&amp;su=Consulta%20sobre%20NovaTech" target="_blank" rel="noopener">✉ Escribinos por Gmail</a>
+        <a class="btn ghost" href="#sistema">Conocé el sistema</a>
+      </div>
+      <div class="contact" style="margin-top:16px">
+        <span class="mail" id="mail">novatech0805@gmail.com</span>
+        <button class="copy" id="copiar" type="button">Copiar mail</button>
+      </div>
+      <p class="status" id="estado" role="status" aria-live="polite"></p>
+    </div>
+  </div></div>
+
+  <section id="nosotros">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Quiénes somos</span>
+        <h2>Tecnología sencilla para quienes cuidan de la salud</h2>
+        <p>NovaTech S.R.L. es un equipo de cuatro socios fundadores que desarrolla software para instituciones, con foco en el sector salud. Creemos que muchas tareas se pueden simplificar con herramientas digitales bien pensadas.</p>
+      </div>
+      <div class="modules">
+        <div class="card a">
+          <span class="label">Misión</span>
+          <p>Crear herramientas tecnológicas sencillas y útiles que ayuden a las instituciones de salud a organizar sus tareas, gestionar documentos y hacer un mejor seguimiento de los traslados, cuidando la seguridad de la información y las necesidades de los usuarios.</p>
+        </div>
+        <div class="card b">
+          <span class="label">Visión</span>
+          <p>Ser una empresa reconocida en Uruguay por desarrollar soluciones informáticas para instituciones de salud, ayudando a mejorar la organización de la información y los procesos de trabajo.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt" id="sistema">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Nuestro sistema: SIGSM</h2>
+        <p>Sistema Informático de Gestión de Servicios Médicos. Dos módulos que trabajan juntos.</p>
+      </div>
+      <div class="modules">
+        <div class="card a">
+          <span class="label">Módulo 01</span>
+          <h3>Documentación con QR</h3>
+          <p>Acceso digital a la documentación del paciente con un código QR.</p>
+          <ul>
+            <li>Catálogo de documentos y ficha pública</li>
+            <li>Encuestas anónimas para pacientes</li>
+            <li>Gestión de documentos para funcionarios</li>
+          </ul>
+        </div>
+        <div class="card b">
+          <span class="label">Módulo 02</span>
+          <h3>Trazabilidad de ambulancias</h3>
+          <p>Seguimiento de cada ambulancia y gestión de los traslados.</p>
+          <ul>
+            <li>Formulario para registrar traslados</li>
+            <li>Panel de traslados activos</li>
+            <li>Monitoreo general y administración de ambulancias</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Del PDF al celular del paciente</h2>
+        <p>Así llega un documento a quien lo necesita.</p>
+      </div>
+      <ol class="steps">
+        <li><strong>El funcionario sube el PDF</strong><span>Desde la sección Documentos, con el PDF ya preparado.</span></li>
+        <li><strong>El médico lo revisa y lo aprueba</strong><span>El documento queda pendiente hasta que un médico lo aprueba.</span></li>
+        <li><strong>El paciente lo abre con el QR</strong><span>Escanea el código y consulta la ficha, sin crear una cuenta.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Por qué NovaTech</span>
+        <h2>Lo que resolvemos</h2>
+        <p>Los hospitales manejan mucha información y tareas administrativas que llevan tiempo. Esto es lo que mejora SIGSM.</p>
+      </div>
+      <div class="roles">
+        <div class="role"><span class="ico">1</span><strong>Menos papel</strong><span>Reducimos el uso de papel y fotocopias, y con eso los gastos de impresión.</span></div>
+        <div class="role"><span class="ico">2</span><strong>Acceso simple</strong><span>Un único código QR general lleva a todos los documentos, organizados por categorías.</span></div>
+        <div class="role"><span class="ico">3</span><strong>Traslados ordenados</strong><span>Solicitudes, choferes, vehículos, horarios e historial en un solo lugar.</span></div>
+        <div class="role"><span class="ico">4</span><strong>Hecho a medida</strong><span>Pensado para las necesidades reales del Hospital de Clínicas, con una interfaz fácil de usar.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Nuestro camino</span>
+        <h2>Empezamos por un hospital, pensamos en muchos</h2>
+        <p>Nos concentramos en dos necesidades concretas del sector salud en lugar de ofrecer una herramienta general.</p>
+      </div>
+      <ol class="timeline">
+        <li><strong>Hospital de Clínicas</strong><span>Implementamos SIGSM en su infraestructura, como primer cliente.</span></li>
+        <li><strong>Aprender y mejorar</strong><span>Usamos esa experiencia para pulir el sistema.</span></li>
+        <li><strong>Otras instituciones</strong><span>Evaluamos llevarlo a otras instituciones de salud, públicas y privadas.</span></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Valores</span>
+        <h2>Cómo trabajamos</h2>
+      </div>
+      <div class="roles">
+        <div class="role"><strong>Innovación</strong><span>Buscamos nuevas formas de resolver problemas con tecnología.</span></div>
+        <div class="role"><strong>Compromiso</strong><span>Tenemos presentes las necesidades de cada institución.</span></div>
+        <div class="role"><strong>Seguridad y confidencialidad</strong><span>Cuidamos la información que se guarda y se consulta.</span></div>
+        <div class="role"><strong>Responsabilidad</strong><span>Cumplimos con las tareas y los compromisos asumidos.</span></div>
+        <div class="role"><strong>Inclusión y accesibilidad</strong><span>Herramientas fáciles de usar para todo tipo de usuarios.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">El equipo</span>
+        <h2>Cuatro socios, un mismo objetivo</h2>
+        <p>Las decisiones importantes las tomamos entre todos, en reuniones semanales.</p>
+      </div>
+      <div class="roles">
+        <div class="role"><span class="ico">ES</span><strong>Emily Suárez</strong><span class="badge">Socia fundadora</span></div>
+        <div class="role"><span class="ico">JI</span><strong>Julieta Izzi</strong><span class="badge">Socia fundadora</span></div>
+        <div class="role"><span class="ico">CP</span><strong>Clemente Pereyra</strong><span class="badge">Socio fundador</span></div>
+        <div class="role"><span class="ico">AR</span><strong>Alexis Rosas</strong><span class="badge">Socio fundador</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Hecho con</h2>
+        <p>Tecnologías abiertas, que se instalan en un servidor Linux.</p>
+      </div>
+      <ul class="stack">
+        <li>HTML y CSS</li>
+        <li>JavaScript</li>
+        <li>PHP</li>
+        <li>MySQL</li>
+        <li>Docker</li>
+        <li>Linux</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="section-head">
+        <span class="eyebrow">Contacto</span>
+        <h2>¿Querés conocer más?</h2>
+        <p>Escribinos y coordinamos una demostración del prototipo de SIGSM.</p>
+      </div>
+      <div class="btns">
+        <a class="btn big" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=novatech0805@gmail.com&amp;su=Consulta%20sobre%20NovaTech" target="_blank" rel="noopener">✉ Escribir a novatech0805@gmail.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><strong>NovaTech</strong> · Proyecto de egreso</span>
+    <span>Bachillerato en Tecnologías de la Información</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var boton = document.getElementById('copiar');
+  var mail = document.getElementById('mail');
+  var estado = document.getElementById('estado');
+  function seleccionar() {
+    var r = document.createRange();
+    r.selectNodeContents(mail);
+    var s = window.getSelection();
+    s.removeAllRanges();
+    s.addRange(r);
+    estado.textContent = 'Seleccionado: copialo con el menú de tu celular.';
+  }
+  boton.addEventListener('click', function () {
+    try {
+      navigator.clipboard.writeText(mail.textContent.trim()).then(
+        function () { estado.textContent = 'Copiado.'; },
+        seleccionar
+      );
+    } catch (e) { seleccionar(); }
+  });
+})();
+</script>
+
+</body></html>
