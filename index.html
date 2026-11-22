@@ -168,9 +168,31 @@ a.btn.big { font-size: 18px; padding: 16px 26px; }
 .timeline strong { font-family: var(--font-display); font-size: 20px; }
 .timeline span { color: var(--muted); }
 section[id] { scroll-margin-top: 12px; }
-@media (prefers-reduced-motion: reduce) { * { scroll-behavior: auto !important; } }
+.js .reveal { opacity: 0; transform: translateY(26px); transition: opacity .7s ease, transform .7s cubic-bezier(.2,.7,.2,1); }
+.js .reveal.in { opacity: 1; transform: none; }
+.herobg { background-size: 150% 150%; animation: drift 14s ease-in-out infinite alternate; }
+@keyframes drift { from { background-position: 0% 0%; } to { background-position: 100% 100%; } }
+@keyframes up { from { opacity: 0; transform: translateY(22px); } to { opacity: 1; transform: none; } }
+.hero > * { animation: up .8s cubic-bezier(.2,.7,.2,1) both; }
+.hero > :nth-child(2) { animation-delay: .12s; } .hero > :nth-child(3) { animation-delay: .24s; }
+h1 .dot { display: inline-block; animation: pulse 2.4s ease-in-out infinite; }
+@keyframes pulse { 50% { transform: scale(1.35); } }
+.card, .role, .timeline li, .stack li, a.btn, .logo-chip { transition: transform .25s ease, box-shadow .25s ease; }
+.card:hover, .role:hover, .timeline li:hover { transform: translateY(-5px); box-shadow: 0 14px 30px -14px rgba(107,33,245,.45); }
+.stack li:hover, a.btn:hover, .logo-chip:hover { transform: translateY(-2px); }
+a.btn:active, button.copy:active { transform: scale(.97); }
+.progress { position: fixed; left: 0; right: 0; top: env(safe-area-inset-top, 0px); height: 4px; z-index: 50; background: linear-gradient(90deg, var(--accent), var(--magenta)); transform-origin: 0 50%; transform: scaleX(0); pointer-events: none; }
+.hero { will-change: translate, opacity; }
+.fl { will-change: translate; }
+@media (prefers-reduced-motion: reduce) {
+  .progress { display: none; }
+  * { scroll-behavior: auto !important; animation: none !important; }
+  .js .reveal { opacity: 1; transform: none; transition: none; }
+  .card:hover, .role:hover, .timeline li:hover { transform: none; }
+}
 </style>
 
+<div class="progress" id="prog"></div>
 <header>
   <div class="wrap">
     <span class="logo-chip"><img src="logo.png" alt="NovaTech" width="159" height="36"></span>
@@ -385,4 +407,54 @@ section[id] { scroll-margin-top: 12px; }
 })();
 </script>
 
+<script>
+(function () {
+  document.documentElement.classList.add('js');
+  var els = document.querySelectorAll('.section-head, .modules > *, .steps > li, .roles > *, .timeline > li, .stack, .btns');
+  els.forEach(function (el) {
+    el.classList.add('reveal');
+    var i = Array.prototype.indexOf.call(el.parentNode.children, el);
+    if (el.parentNode.matches('.modules,.steps,.roles,.timeline')) el.style.transitionDelay = (i * 90) + 'ms';
+  });
+  if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+  var io = new IntersectionObserver(function (list) {
+    list.forEach(function (x) { if (x.isIntersecting) { x.target.classList.add('in'); io.unobserve(x.target); } });
+  }, { threshold: 0.12 });
+  els.forEach(function (e) { io.observe(e); });
+})();
+</script>
+<script>
+(function () {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  var bar = document.getElementById('prog');
+  var hero = document.querySelector('.hero');
+  var herobg = document.querySelector('.herobg');
+  var fl = Array.prototype.slice.call(document.querySelectorAll('.modules > *, .roles > *, .timeline > li, .steps > li'));
+  fl.forEach(function (el, i) { el.classList.add('fl'); el._k = (i % 2 ? 1 : -1); });
+  var ticking = false;
+  function frame() {
+    ticking = false;
+    var y = window.scrollY, vh = window.innerHeight;
+    var max = document.documentElement.scrollHeight - vh;
+    if (bar) bar.style.transform = 'scaleX(' + (max > 0 ? Math.min(y / max, 1) : 0) + ')';
+    if (hero && y < vh * 1.2) {
+      hero.style.translate = '0 ' + (y * 0.22) + 'px';
+      hero.style.opacity = Math.max(1 - y / (vh * 0.9), 0.15);
+    }
+    if (herobg) herobg.style.backgroundPositionY = (y * 0.12) + 'px';
+    fl.forEach(function (el) {
+      var cols = getComputedStyle(el.parentNode).gridTemplateColumns.split(' ').length;
+      if (cols < 2) { el.style.translate = 'none'; return; }
+      var r = el.getBoundingClientRect();
+      if (r.bottom < -80 || r.top > vh + 80) return;
+      var d = ((r.top + r.height / 2) - vh / 2) / vh;
+      el.style.translate = '0 ' + (d * 22 * el._k).toFixed(1) + 'px';
+    });
+  }
+  function onScroll() { if (!ticking) { ticking = true; requestAnimationFrame(frame); } }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  frame();
+})();
+</script>
 </body></html>
