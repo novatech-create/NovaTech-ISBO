@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="NovaTech desarrolla SIGSM: documentación de pacientes con QR y trazabilidad de ambulancias para hospitales."><meta property="og:title" content="NovaTech · Soluciones IT para el sector salud"><meta property="og:description" content="SIGSM: documentación con QR y trazabilidad de ambulancias."><meta property="og:type" content="website"><meta name="theme-color" content="#6B21F5"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="NovaTech desarrolla SIGSM: documentación de pacientes con QR y trazabilidad de ambulancias para hospitales."><meta property="og:title" content="NovaTech · Soluciones IT para el sector salud"><meta property="og:description" content="SIGSM: documentación con QR y trazabilidad de ambulancias."><meta property="og:type" content="website"><meta name="theme-color" content="#0D0B1E"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>NovaTech</title>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <style>
@@ -220,6 +220,34 @@ a.btn:active, button.copy:active { transform: scale(.97); }
 .why{margin-top:14px;color:var(--muted);max-width:40rem}
 </style>
 
+<style id="marca">
+/* Estilo del logo: fondo oscuro con violeta y magenta */
+:root:root:root{--bg:#0D0B1E;--surface:#17143A;--fg:#F3F1FF;--muted:#B7B2D6;--line:#2D2A4D;--accent:#6B21F5;--accent-fg:#fff;--magenta:#D400F2;--card-a-bg:#6B21F5;--card-b-bg:#17143A;--chip-bg:transparent;--grad:linear-gradient(135deg,#6B21F5,#D400F2);color-scheme:dark}
+.herobg{background:radial-gradient(60% 90% at 90% 0%,rgba(212,0,242,.35),transparent 70%),radial-gradient(55% 85% at 0% 100%,rgba(107,33,245,.45),transparent 70%)}
+.logo-chip{padding:0}
+.tag{color:var(--muted);border-color:var(--line)}
+h1{letter-spacing:-.035em}
+.eyebrow,.role .badge{color:var(--magenta)}
+.steps li{border-top:3px solid transparent;border-image:var(--grad) 1}
+.steps li::before{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.card.a{background:var(--grad)}
+.card.b{background:var(--surface);border:1.5px solid var(--line)}
+.card.b .label{color:var(--magenta)}
+.role .ico{box-shadow:0 8px 20px -8px rgba(212,0,242,.7)}
+.role,.timeline li{background:var(--surface)}
+section.alt .role,section.alt .timeline li{background:var(--bg)}
+.card:hover,.role:hover,.timeline li:hover{border-color:var(--accent);box-shadow:0 16px 36px -18px rgba(212,0,242,.6)}
+.stack li{background:rgba(107,33,245,.22);border-color:rgba(183,156,255,.35)}
+a.btn,button.copy,.tabs button[aria-selected=true]{background:var(--grad);color:#fff;border-color:transparent}
+a.btn.ghost{background:transparent;border:1.5px solid var(--line);color:var(--fg)}
+.tabs button{background:var(--surface)}
+.shot .frame{box-shadow:0 18px 44px -22px rgba(212,0,242,.55)}
+.shot.m .frame{border-color:#3b3768}
+.status-pill{background:var(--surface)}
+.formbox input,.formbox textarea{background:var(--surface)}
+.faq summary::marker{color:var(--magenta)}
+.progress{background:var(--grad)}
+</style>
 <div class="progress" id="prog"></div>
 <header>
   <div class="wrap">
@@ -305,7 +333,7 @@ a.btn:active, button.copy:active { transform: scale(.97); }
       </div>
       <ol class="steps">
         <li><strong>El funcionario sube el PDF</strong><span>Desde la sección Documentos, con el PDF ya preparado.</span></li>
-        <li><strong>El médico lo revisa y lo aprueba</strong><span>El documento queda pendiente hasta que un médico lo aprueba.</span></li>
+        <li><strong>El médico lo revisa y decide</strong><span>El documento queda pendiente hasta que un médico lo aprueba. Si lo rechaza, anota el motivo y el funcionario lo ve.</span></li>
         <li><strong>El paciente lo abre con el QR</strong><span>Escanea el código y consulta la ficha, sin crear una cuenta.</span></li>
       </ol>
     </div>
@@ -317,9 +345,9 @@ a.btn:active, button.copy:active { transform: scale(.97); }
       <div class="section-head">
         <span class="eyebrow">Demo</span>
         <h2>Demostración del sistema</h2>
-        <p>Capturas del prototipo funcionando, con datos de prueba. Un recorrido completo, de la carga del documento al seguimiento de la ambulancia.</p>
+        <p>Capturas del prototipo funcionando, con datos de prueba. Un recorrido completo: alta del funcionario, carga, aprobación o rechazo de documentos, consulta del paciente y seguimiento de ambulancias.</p>
       </div>
-      <div class="demo"><div class="tabs" role="tablist" aria-label="Recorrido del sistema"><button type="button" role="tab" id="t0" aria-controls="p0" aria-selected="true" tabindex="0">1. El médico aprueba</button><button type="button" role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">2. El paciente consulta</button><button type="button" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">3. Se registra el traslado</button><button type="button" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">4. Se sigue en el panel</button></div><figure class="shot d" role="tabpanel" id="p0" aria-labelledby="t0"><div class="frame"><img src="medico-revision.webp" alt="Pantalla de revisión médica del sistema SIGSM" loading="lazy"></div><figcaption><strong>El médico aprueba.</strong> Cada documento queda pendiente hasta que un médico lo abre y decide si se publica o se rechaza.</figcaption></figure><figure class="shot m" role="tabpanel" id="p1" aria-labelledby="t1" hidden><div class="frame"><img src="paciente-ficha.webp" alt="Ficha del documento en el celular del sistema SIGSM" loading="lazy"></div><figcaption><strong>El paciente consulta.</strong> Desde el celular y sin crear cuenta: lee o descarga el PDF y puede dejar una encuesta breve.</figcaption></figure><figure class="shot d" role="tabpanel" id="p2" aria-labelledby="t2" hidden><div class="frame"><img src="traslado-formulario.webp" alt="Formulario de nuevo traslado del sistema SIGSM" loading="lazy"></div><figcaption><strong>Se registra el traslado.</strong> Motivo, datos mínimos del paciente, chofer, enfermero, médico, vehículo, ruta y hora estimada.</figcaption></figure><figure class="shot d" role="tabpanel" id="p3" aria-labelledby="t3" hidden><div class="frame"><img src="traslados-panel.webp" alt="Panel de traslados activos del sistema SIGSM" loading="lazy"></div><figcaption><strong>Se sigue en el panel.</strong> Traslados activos, solicitudes pendientes y próxima llegada estimada, con el detalle de cada uno.</figcaption></figure></div>
+      <div class="demo"><div class="tabs" role="tablist" aria-label="Recorrido del sistema"><button type="button" role="tab" id="t0" aria-controls="p0" aria-selected="true" tabindex="0">1. Se crea el funcionario</button><button type="button" role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">2. El funcionario gestiona</button><button type="button" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">3. El médico aprueba</button><button type="button" role="tab" id="t3" aria-controls="p3" aria-selected="false" tabindex="-1">4. O lo rechaza, con motivo</button><button type="button" role="tab" id="t4" aria-controls="p4" aria-selected="false" tabindex="-1">5. El paciente consulta</button><button type="button" role="tab" id="t5" aria-controls="p5" aria-selected="false" tabindex="-1">6. Se registra el traslado</button><button type="button" role="tab" id="t6" aria-controls="p6" aria-selected="false" tabindex="-1">7. Se sigue en el panel</button></div><figure class="shot d" role="tabpanel" id="p0" aria-labelledby="t0"><div class="frame"><img src="admin-alta-funcionario.webp" alt="Alta de funcionario en el panel de administración del sistema SIGSM" loading="lazy"></div><figcaption><strong>Se crea el funcionario.</strong> El administrador da de alta la cuenta con documento, nombre y contraseña inicial, y puede darla de baja cuando ya no se use.</figcaption></figure><figure class="shot d" role="tabpanel" id="p1" aria-labelledby="t1" hidden><div class="frame"><img src="funcionario-documentos.webp" alt="Gestión de documentos del funcionario del sistema SIGSM" loading="lazy"></div><figcaption><strong>El funcionario gestiona.</strong> Los documentos se organizan por servicio, con su estado (pendiente o aprobado), y se pueden ver, eliminar o cargar uno nuevo.</figcaption></figure><figure class="shot d" role="tabpanel" id="p2" aria-labelledby="t2" hidden><div class="frame"><img src="medico-aprobacion.webp" alt="Revisión médica con un documento ya aprobado del sistema SIGSM" loading="lazy"></div><figcaption><strong>El médico aprueba.</strong> Cada documento queda pendiente hasta que un médico lo abre y lo aprueba para que se publique.</figcaption></figure><figure class="shot d" role="tabpanel" id="p3" aria-labelledby="t3" hidden><div class="frame"><img src="funcionario-rechazo.webp" alt="Documento rechazado con el motivo, en la vista del funcionario del sistema SIGSM" loading="lazy"></div><figcaption><strong>O lo rechaza, con motivo.</strong> El médico anota por qué rechaza el documento y el funcionario lo ve junto al estado, para saber qué corregir.</figcaption></figure><figure class="shot m" role="tabpanel" id="p4" aria-labelledby="t4" hidden><div class="frame"><img src="paciente-ficha.webp" alt="Ficha del documento en el celular del sistema SIGSM" loading="lazy"></div><figcaption><strong>El paciente consulta.</strong> Desde el celular y sin crear cuenta: lee o descarga el PDF y puede dejar una encuesta breve.</figcaption></figure><figure class="shot d" role="tabpanel" id="p5" aria-labelledby="t5" hidden><div class="frame"><img src="traslado-formulario.webp" alt="Formulario de nuevo traslado del sistema SIGSM" loading="lazy"></div><figcaption><strong>Se registra el traslado.</strong> Motivo, datos mínimos del paciente, chofer, enfermero, médico, vehículo, ruta y hora estimada.</figcaption></figure><figure class="shot d" role="tabpanel" id="p6" aria-labelledby="t6" hidden><div class="frame"><img src="traslados-panel.webp" alt="Panel de traslados activos del sistema SIGSM" loading="lazy"></div><figcaption><strong>Se sigue en el panel.</strong> Traslados activos, solicitudes pendientes y próxima llegada estimada, con el detalle de cada uno.</figcaption></figure></div>
     </div>
   </section>
 
@@ -365,7 +393,7 @@ a.btn:active, button.copy:active { transform: scale(.97); }
       <div class="roles">
         <div class="role"><span class="badge">Paciente</span><strong>Solo lo público</strong><span>Consulta fichas aprobadas y responde encuestas anónimas, sin cuenta ni datos personales.</span></div>
         <div class="role"><span class="badge">Funcionario</span><strong>Carga documentos</strong><span>Sube y gestiona documentos, que quedan pendientes hasta su aprobación.</span></div>
-        <div class="role"><span class="badge">Médico</span><strong>Revisa y aprueba</strong><span>Nada se publica sin su visto bueno.</span></div>
+        <div class="role"><span class="badge">Médico</span><strong>Revisa y decide</strong><span>Nada se publica sin su visto bueno. Si rechaza un documento, deja el motivo.</span></div>
         <div class="role"><span class="badge">Datos</span><strong>En su infraestructura</strong><span>SIGSM se instala en el servidor de la institución, con la información bajo su control.</span></div>
       </div>
       <p class="why">Trabajamos teniendo presente la Ley 18.331 de protección de datos personales de Uruguay.</p>
